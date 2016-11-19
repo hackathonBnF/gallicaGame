@@ -18,5 +18,8 @@ def get_work():
     xml_body = requests.get('http://oai.bnf.fr/oai2/OAIHandler?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:bnf.fr:gallica/{}'.format(id)).content
     return app.response_class(to_json(xml_body), content_type='application/json')
 
+# /quests -> user_id, [quest_id...]
+# /quest/start?quest_id=&user_id=
+# /quest/finish?quest_id=&user_id=
 if __name__ == '__main__':
     app.run()
