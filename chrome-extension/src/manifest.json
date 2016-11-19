@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+
+  "name": "Gallica Game",
+  "description": "extension chrome de Gallica Game",
+  "version": "0.0.1",
+
+  "browser_action": {
+    "default_icon": "assets/images/icon.png",
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://gallica.bnf.fr/ark:/*"],
+      "css": ["bundle.css"],
+      "js": ["bundle.js"]
+    }
+  ],
+  "permissions": [
+    "activeTab"
+  ]
+}

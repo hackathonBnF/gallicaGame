@@ -1,0 +1,19 @@
+.ui-layout-fullwidth .detailPane{
+    padding-left: 0;
+    margin-left: -50px;
+}
+
+.detailPane div.pager{
+    right: 150px;
+}
+
+.gc-root{
+    position: absolute;
+    top: 110px;
+    right: 10px;
+    bottom: 47px;
+    width: 140px;
+    background-color: red;
+    padding: 10px;
+    z-index: 9999;
+}

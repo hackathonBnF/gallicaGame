@@ -1,0 +1,94 @@
+{
+  "name": "gallica-game-chrome-extension",
+  "version": "0.0.1",
+  "description": "Gallica Game : Chrome extension",
+  "projects": [
+    {
+      "name": "default",
+      "source": "./src",
+      "build": "./build",
+      "dist": "./dist",
+      "bundle": {
+        "js": {
+          "src": "/index.js",
+          "dest": "/bundle.js"
+        },
+        "css": {
+          "src": "/index.scss",
+          "dest": "/bundle.css"
+        },
+        "assets": {
+          "src": "/assets",
+          "dest": "/assets"
+        }
+      }
+    }
+  ],
+  "license": "Apache License Version 2.0",
+  "browser": {
+    "angular": "./node_modules/angular/angular.min.js",
+    "angular-ui-router": "./node_modules/angular-ui-router/release/angular-ui-router.min.js",
+    "angular-translate": "./node_modules/angular-translate/dist/angular-translate.min.js",
+    "angular-translate-loader-url": "./node_modules/angular-translate/dist/angular-translate-loader-url/angular-translate-loader-url.min.js",
+    "angular-translate-loader-static-files": "./node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"
+   
+  },
+  "browserify-shim": {
+    "angular": {
+      "exports": "angular"
+    }
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim",
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ],
+          "ignore": "./node_modules/"
+        }
+      ]
+    ]
+  },
+  "dependencies": {
+    "angular": "^1.5.2",
+    "angular-translate": "^2.11.0",
+    "angular-ui-router": "^0.2.18",
+    "lodash": "^4.13.1",
+    "normalize-scss": "^5.0.3"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "browserify-shim": "^3.8.12",
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^4.1.0",
+    "gulp-if": "^2.0.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-template": "^4.0.0",
+    "gulp-uglify": "^1.5.4",
+    "gulp-util": "^3.0.7",
+    "gulp-zip": "^3.2.0",
+    "jshint": "^2.9.2",
+    "lodash": "^4.13.1",
+    "merge-stream": "^1.0.0",
+    "minimist": "^1.2.0",
+    "normalize-scss": "^5.0.3",
+    "path": "^0.12.7",
+    "run-sequence": "^1.2.1",
+    "stringify": "^5.1.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  }
+}
