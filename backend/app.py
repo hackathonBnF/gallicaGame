@@ -9,6 +9,7 @@ import xmltodict
 
 app = Flask(__name__)
 CORS(app)
+user_id_generator = 0
 
 if 'MONGODB_URI' in environ:
     mongo = MongoClient(environ['MONGODB_URI'])
@@ -32,7 +33,27 @@ def mongo_test():
     return app.response_class(dumps(list(db.test.find({}))), content_type='application/json')
 
 # /quests -> user_id, [quest_id...]
+@app.route('/quests')
+def get_quests():
+    global user_id_generator
+    user_id_generator += 1
+    quests = {
+        1: "Quest 1",
+        2: "Quest 2",
+        3: "Quest 3"
+    }
+    response = {
+        'user_id': user_id_generator,
+        'quests': quests
+    }
+    return app.response_class(dumps(response), content_type='application/json')
+
 # /quest/start?quest_id=&user_id=
+@app.route('/quest/start/<int:quest_id>/<int:user_id>')
+def start_quest(quest_id, user_id):
+    # todo Caro!
+    pass
+
 # /quest/finish?quest_id=&user_id=
 if __name__ == '__main__':
     app.run()
