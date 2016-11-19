@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 from flask import Flask, request
 from flask_cors import CORS
+from pymongo import MongoClient
 import json
 import requests
 import xmltodict
 
 app = Flask(__name__)
 CORS(app)
+mongo = MongoClient()
 
 def to_json(xml_string):
     return json.dumps(xmltodict.parse(xml_string))
