@@ -69,16 +69,17 @@ def init_quest(quest_id):
 def start_quest(quest_id, user_id):
     global user_id_generator
     if user_id > user_id_generator+1:
-        user_id_generator +=1
-        return redirect(url_for('start_quest', quest_id=quest_id, user_id= user_id_generator))
+        return redirect(url_for('start_quest', quest_id=quest_id, user_id = user_id_generator+1))
     
     if user_id > user_id_generator:
         user_id_generator+=1
     
     item = {
         "user_id": user_id,
-        "quest_id": quest_id
+        "quest_id": quest_id,
+        "started": True
     }
+    
     found = list(db.quests.find(item))
     if found != []:
         response = db.quests.update(
@@ -87,6 +88,7 @@ def start_quest(quest_id, user_id):
         found = list(db.quests.find({"user_id": user_id, "quest_id": quest_id}))
         return create_response(app, {"action": "find", "value": found})
         
+    item['finished'] = False
     db.quests.insert(item)
     return create_response(app, {"action": "add", "value": [item]})
 
