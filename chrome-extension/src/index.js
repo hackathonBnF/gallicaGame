@@ -1,5 +1,7 @@
 import 'whatwg-fetch';
 import _ from 'lodash';
+import UrlBasedQuest from './urlBasedQuest';
+
 
 const assetsPath = chrome.extension.getURL('assets/images/star.png');
 
@@ -49,11 +51,22 @@ quests.innerHTML = `
 `;
 document.body.insertBefore(quests,toolbar);
 
+
 fetch('http://gallicagame.herokuapp.com/quests').then(response => response.json()).then((jsonBody) => {
     console.log(jsonBody);
 });
 
-document.querySelector('.js-open-gg-quests').addEventListener('click',(event)=>{
+
+
+const urlBasedQuest = new UrlBasedQuest(() => console.log('Quest has ended'));
+if (!urlBasedQuest.isInitialized()) {
+    urlBasedQuest.initialize();
+}
+urlBasedQuest.onPageVisit();
+console.log(urlBasedQuest.getCurrentQuestHtml());
+// remember visited pages -> as all pages on one quest are visited, validate the quest.
+
+document.querySelector('.js-open-gc-quests').addEventListener('click',(event)=>{
     console.log("pouet");
     quests.classList.toggle('gg-hide');
 });

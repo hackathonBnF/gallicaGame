@@ -6,16 +6,20 @@ import requests
 
 app = Flask(__name__)
 CORS(app)
+
+# Globals
 user_id_generator = 0
+steps = 0
 quests = {
-    1: "Quest 1",
-    2: "Quest 2",
-    3: "Quest 3"
-}
-descriptions = {
-    1: "This is the first quest.",
-    2: "This is the second quest.",
-    3: "This is the third quest."
+    1: {
+        "Name": "Quest 1",
+        "Desctiption": "This is the first quest.",
+        "Steps": {
+            1: "",
+            2: "",
+            3: ""
+        }
+    }
 }
 
 db = create_mongo_client()
@@ -65,8 +69,7 @@ def init_quest(quest_id):
 def start_quest(quest_id, user_id):
     global user_id_generator
     if user_id > user_id_generator+1:
-        user_id_generator +=1
-        return redirect(url_for('start_quest', quest_id=quest_id, user_id= user_id_generator))
+        return redirect(url_for('start_quest', quest_id=quest_id, user_id = user_id_generator+1))
     
     if user_id > user_id_generator:
         user_id_generator+=1
@@ -74,15 +77,30 @@ def start_quest(quest_id, user_id):
     item = {
         "user_id": user_id,
         "quest_id": quest_id,
-        "started": True,
-        "finished": False
+        "started": True
     }
+    
     found = list(db.quests.find(item))
     if found != []:
+        response = db.quests.update(
+        {'user_id': user_id, 'quest_id': quest_id},
+        {'$set': {'finished': False}})
+        found = list(db.quests.find({"user_id": user_id, "quest_id": quest_id}))
         return create_response(app, {"action": "find", "value": found})
         
+    item['finished'] = False
     db.quests.insert(item)
     return create_response(app, {"action": "add", "value": [item]})
+
+# /quest/update?quest_id=&step=
+@app.route('/quest/update/<int:quest_id>/<step>/')
+def update_quest(quest_id, step):
+    global steps
+    steps+=1
+    return create_response(app,
+    {
+        "action": "update",
+        "step": steps})
 
 # /quest/finish?quest_id=&user_id=
 @app.route('/quest/finish/<int:quest_id>/<int:user_id>/')
@@ -105,7 +123,7 @@ def finish_quest(quest_id, user_id):
     found = list(db.quests.find(item))
     # try to finish a non-started quest
     if found == []:
-        message = "user_id '" + str(user_id) + "' does not start quest '" + quests[quest_id] + "'"
+        message = "User '" + str(user_id) + "' does not start quest '" + quests[quest_id]['Name'] + "'"
         return create_response(app,
             {
                 "Error": message,
@@ -117,7 +135,6 @@ def finish_quest(quest_id, user_id):
         {'$set': {'finished': True}})
     found = list(db.quests.find({"user_id": user_id, "quest_id": quest_id}))
     return create_response(app, {"action": "update", "value": found})
-    
     
 if __name__ == '__main__':
     app.run()
