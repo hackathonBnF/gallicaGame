@@ -58,7 +58,7 @@ export default class {
     getCurrentQuestHtml() {
         const currentUrl = window.location.href;
         if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k716226w/f5.image')) {
-            return 'Quelle avancée majeure en médecine légale ce tragique événement a-t-il amené ?'
+            return '<b>Félicitations, le Bazar se trouvait bien Rue Dr Goujon.</b>'
         } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/btv1b90150286')) {
             return `<a href="http://gallica.bnf.fr/ark:/12148/bpt6k54932781/f136.image">Pourquoi a-t-on accusé cette tenue d’avoir précipité la mort d’une majorité de femmes dans le bazar ?</a>`;
         } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k54932781/f136.image')) {
