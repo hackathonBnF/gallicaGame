@@ -80,7 +80,11 @@ def start_quest(quest_id, user_id):
 def finish_quest(quest_id, user_id):
     # bad user
     if user_id > user_id_generator:
-        return create_response(app, {"Error": "user_id '" + str(user_id) + "' does not exist."})
+        return create_response(app,
+            {
+                "Error": "user_id '" + str(user_id) + "' does not exist.",
+                "ErrorCode": 1
+            })
     
     item = {
         "user_id": user_id,
@@ -93,7 +97,11 @@ def finish_quest(quest_id, user_id):
     # try to finish a non-started quest
     if found == []:
         message = "user_id '" + str(user_id) + "' does not start quest '" + quests[quest_id] + "'"
-        return create_response(app, {"Error": message})
+        return create_response(app,
+            {
+                "Error": message,
+                "ErrorCode": 2
+            })
     
     response = db.quests.update(
         {'user_id': user_id, 'quest_id': quest_id},
