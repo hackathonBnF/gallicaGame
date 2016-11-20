@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from flask import Flask, request
+from flask import Flask, request, redirect, url_for
 from flask_cors import CORS
 from os import environ
 from pymongo import MongoClient
@@ -10,6 +10,11 @@ import xmltodict
 app = Flask(__name__)
 CORS(app)
 user_id_generator = 0
+quests = {
+    1: "Quest 1",
+    2: "Quest 2",
+    3: "Quest 3"
+}
 
 if 'MONGODB_URI' in environ:
     mongo = MongoClient(environ['MONGODB_URI'])
@@ -37,11 +42,6 @@ def mongo_test():
 def get_quests():
     global user_id_generator
     user_id_generator += 1
-    quests = {
-        1: "Quest 1",
-        2: "Quest 2",
-        3: "Quest 3"
-    }
     response = {
         'user_id': user_id_generator,
         'quests': quests
@@ -49,11 +49,33 @@ def get_quests():
     return app.response_class(dumps(response), content_type='application/json')
 
 # /quest/start?quest_id=&user_id=
-@app.route('/quest/start/<int:quest_id>/<int:user_id>')
-def start_quest(quest_id, user_id):
-    # todo Caro!
-    pass
+@app.route('/quest/start/<int:quest_id>/')
+def init_quest(quest_id):
+    global user_id_generator    
+    keys = quests.keys()
+    
+    if not quest_id in keys:
+        response = "Cet id n'existe pas. Merci d'entrer l'un des ids suivants : "
+        response += ", ".join(str(x) for x in keys) + "."
+        return app.response_class(dumps(response), content_type='application/json')
+        
+    user_id_generator += 1
+    return redirect(url_for('start_quest', quest_id=quest_id, user_id = user_id_generator))
+    
+@app.route('/quest/start/<int:quest_id>/<int:user_id>/')
+def start_quest(quest_id=None, user_id=None):
+    item = {
+        "user_id": user_id,
+        "quest_id": quest_id,
+        "started": True,
+        "finished": False
+    }
+    
+    response = db.quests.insert_one(item).inserted_id
+    return app.response_class(dumps(response), content_type='application/json')
 
 # /quest/finish?quest_id=&user_id=
+
+
 if __name__ == '__main__':
     app.run()
