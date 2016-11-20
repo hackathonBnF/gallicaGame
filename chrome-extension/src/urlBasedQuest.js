@@ -22,15 +22,12 @@ export default class {
         return _.size(this.targetUrls) > 0 && _.every(this.targetUrls);
     }
 
-    initialize(targetUrls) {
+    initialize() {
         this.targetUrls = {
             'http://gallica.bnf.fr/ark:/12148/bpt6k5551207g': false,
             'http://gallica.bnf.fr/ark:/12148/bpt6k5459562z': false,
             'http://gallica.bnf.fr/ark:/12148/bpt6k70159b': false,
         };
-        for (let targetUrl of targetUrls) {
-            this.targetUrls[targetUrl] = false;
-        }
         fetch('http://gallicagame.herokuapp.com/quests').then(r => r.json()).then(jsonBody => {
             this.userId = jsonBody.user_id;
             localStorage.userId = this.userId;

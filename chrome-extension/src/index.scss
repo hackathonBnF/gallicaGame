@@ -11,6 +11,14 @@ $ionicons-font-path: 'http://code.ionicframework.com/ionicons/2.0.1/fonts';
     right: 10px;
     top: 120px;
     z-index: 9999;
+    nav{
+        display: flex;
+        flex-direction: row;
+        height: 45px;
+        & > *{
+            min-width: 45px;
+        }
+    }
 }
 
 .gg-quests{

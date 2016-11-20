@@ -3,7 +3,7 @@ import _ from 'lodash';
 import UrlBasedQuest from './urlBasedQuest';
 
 
-const assetsPath = chrome.extension.getURL('assets/images/star.png');
+const assetsPath = chrome.extension.getURL('assets/images');
 
 console.log(assetsPath);
 const toolbar = document.querySelector('#leftToolbar');
@@ -12,8 +12,14 @@ const toolbarGrp = document.createElement("div");
 toolbarGrp.setAttribute('class','gg-tool');
 toolbarGrp.innerHTML = `
     <nav>
+        <a href="#">
+            <img src="${assetsPath}/bodies.png">
+        </a>
         <a class="js-open-gg-quests" href="#">
-            <img src="${assetsPath}">
+            <img src="${assetsPath}/fiole.png">
+        </a> 
+        <a href="#">
+            <img src="${assetsPath}/star.png">
         </a> 
     </nav>
 `;
@@ -56,8 +62,6 @@ fetch('http://gallicagame.herokuapp.com/quests').then(response => response.json(
     console.log(jsonBody);
 });
 
-
-
 const urlBasedQuest = new UrlBasedQuest(() => console.log('Quest has ended'));
 if (!urlBasedQuest.isInitialized()) {
     urlBasedQuest.initialize();
@@ -66,7 +70,7 @@ urlBasedQuest.onPageVisit();
 console.log(urlBasedQuest.getCurrentQuestHtml());
 // remember visited pages -> as all pages on one quest are visited, validate the quest.
 
-document.querySelector('.js-open-gc-quests').addEventListener('click',(event)=>{
+document.querySelector('.js-open-gg-quests').addEventListener('click',(event)=>{
     console.log("pouet");
     quests.classList.toggle('gg-hide');
 });
