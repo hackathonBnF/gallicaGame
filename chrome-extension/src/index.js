@@ -28,32 +28,21 @@ document.body.insertBefore(toolbarGrp,toolbar);
 const quests = document.createElement("div");
 quests.setAttribute('class','gg-quests gg-hide');
 quests.innerHTML = `
-    <ul>
-        <li class="gg-quests-cat js-quests-toggle">
-            <span><i class="icon ion-plus"></i> Cat 1</span>
-            <nav>
-                <a href="#">Quest Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a>
-                <a href="#">Quest Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a>
-                <a href="#">Quest Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a>
-            </nav>
-        </li>
-        <li class="gg-quests-cat js-quests-toggle">
-            <span><i class="icon ion-plus"></i> Cat 2 </span>
-            <nav>
-                <a href="#">Quest Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a>
-                <a href="#">Quest Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a>
-                <a href="#">Quest Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a>
-            </nav>
-        </li>
-        <li class="gg-quests-cat js-quests-toggle">
-            <span><i class="icon ion-plus"></i> Cat 3</span>
-            <nav>
-                <a href="#">Quest Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a>
-                <a href="#">Quest Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a>
-                <a href="#">Quest Lorem ipsum dolor sit amet, consectetur adipiscing elit. </a>
-            </nav>
-        </li>
-    </ul>
+    <div class="label">Quête ÉvÉnementielle</div>
+    <div>
+        <dl>
+            <dt>La recherche du diamant jaune</dt>
+            <dd>On sait depuis longtemps que travailler avec du texte lisible etcontenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. </dd>
+        </dl>
+        <dl>
+            <dt>Il était une foi dans l’Ouest</dt>
+            <dd>Quest Lorem ipsum dolor sit amet, consectetur adipiscing elit.</dd>
+        </dl>
+        <dl>
+            <dt>Vol au-dessus d’un nid de courroux</dt>
+            <dd>Quest Lorem ipsum dolor sit amet, consectetur adipiscing elit.</dd>
+        </dl>
+    </div>
 `;
 document.body.insertBefore(quests,toolbar);
 
