@@ -12,6 +12,11 @@ quests = {
     2: "Quest 2",
     3: "Quest 3"
 }
+descriptions = {
+    1: "This is the first quest.",
+    2: "This is the second quest.",
+    3: "This is the third quest."
+}
 
 db = create_mongo_client()
 
