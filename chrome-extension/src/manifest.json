@@ -18,5 +18,8 @@
   ],
   "permissions": [
     "activeTab"
+  ],
+  "web_accessible_resources":[
+    "assets/images/star.png"
   ]
 }
