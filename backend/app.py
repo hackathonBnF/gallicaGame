@@ -47,7 +47,11 @@ def init_quest(quest_id):
     if not quest_id in keys:
         response = "Quest '" + str(quest_id) + "' does not exist. Thank to use one of those : "
         response += ", ".join(str(x) for x in keys) + "."
-        return create_response(app, response)
+        return create_response(app,
+            {
+                "Error": response,
+                "ErrorCode": 0
+            })
         
     user_id_generator += 1
     return redirect(url_for('start_quest', quest_id=quest_id, user_id = user_id_generator))
