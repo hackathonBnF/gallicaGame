@@ -91,7 +91,7 @@ def start_quest(quest_id, user_id):
     return create_response(app, {"action": "add", "value": [item]})
 
 # /quest/update?quest_id=&step=
-@app.route('quest/update/<int:quest_id>/<step>/')
+@app.route('/quest/update/<int:quest_id>/<step>/')
 def update_quest(quest_id, step):
     global steps
     steps+=1
