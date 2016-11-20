@@ -59,11 +59,11 @@ export default class {
         if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k5551207g')) {
             return `Blablablablabla <a href="http://gallica.bnf.fr/ark:/12148/bpt6k5459562z">Cliquer ici pour la seconde oeuvre</a>`;
         } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k5459562z')) {
-            return `Blablablablabla <a href="http://gallica.bnf.fr/ark:/12148/bpt6k70159b">Troisieme oeuvre</a>`
+            return `Blablablablabla <a href="http://gallica.bnf.fr/ark:/12148/bpt6k70159b">Troisieme oeuvre</a>`;
         } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k70159b')) {
             return 'C\'est bon, fini !';
         } else {
-            return '';
+            return 'On sait depuis longtemps que travailler avec du texte lisible etcontenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même.';
         }
     }
 }
