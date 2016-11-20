@@ -57,9 +57,9 @@ export default class {
     getCurrentQuestHtml() {
         const currentUrl = window.location.href;
         if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k5551207g')) {
-            return `Blablablablabla <a href="http://gallica.bnf.fr/ark:/12148/bpt6k5459562z">Cliquer ici pour la seconde oeuvre</a>`;
+            return `Première étape. <a href="http://gallica.bnf.fr/ark:/12148/bpt6k5459562z">Cliquer ici pour la seconde oeuvre</a>`;
         } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k5459562z')) {
-            return `Blablablablabla <a href="http://gallica.bnf.fr/ark:/12148/bpt6k70159b">Troisieme oeuvre</a>`;
+            return `Deuxième étape. <a href="http://gallica.bnf.fr/ark:/12148/bpt6k70159b">Cliquer ici pour la troisième oeuvre</a>`;
         } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k70159b')) {
             return 'C\'est bon, fini !';
         } else {
