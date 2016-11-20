@@ -27,19 +27,12 @@ quests.innerHTML = `
 document.body.insertBefore(quests,toolbar);
 //js-gc-quests
 
-fetch('http://gallicagame.herokuapp.com/quests').then(response => response.json()).then((jsonBody) => {
-    // console.log(jsonBody);
-});
-
 const urlBasedQuest = new UrlBasedQuest(() => console.log('Quest has ended'));
 if (!urlBasedQuest.isInitialized()) {
-    urlBasedQuest.initialize([
-        'http://gallica.bnf.fr/ark:/12148/bpt6k5551207g',
-        'http://gallica.bnf.fr/ark:/12148/bpt6k5459562z',
-        'http://gallica.bnf.fr/ark:/12148/bpt6k70159b',
-    ]);
+    urlBasedQuest.initialize();
 }
 urlBasedQuest.onPageVisit();
+console.log(urlBasedQuest.getCurrentQuestHtml());
 // remember visited pages -> as all pages on one quest are visited, validate the quest.
 
 document.querySelector('.js-open-gc-quests').addEventListener('click',(event)=>{

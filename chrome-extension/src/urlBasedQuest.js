@@ -23,7 +23,11 @@ export default class {
     }
 
     initialize(targetUrls) {
-        this.targetUrls = {};
+        this.targetUrls = {
+            'http://gallica.bnf.fr/ark:/12148/bpt6k5551207g': false,
+            'http://gallica.bnf.fr/ark:/12148/bpt6k5459562z': false,
+            'http://gallica.bnf.fr/ark:/12148/bpt6k70159b': false,
+        };
         for (let targetUrl of targetUrls) {
             this.targetUrls[targetUrl] = false;
         }
@@ -50,6 +54,19 @@ export default class {
             localStorage.targetUrls = null;
             fetch(`http://gallicagame.herokuapp.com/quest/finish/1/${this.userId}`);
             this.onQuestEnded();
+        }
+    }
+
+    getCurrentQuestHtml() {
+        const currentUrl = window.location.href;
+        if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k5551207g')) {
+            return `Blablablablabla <a href="http://gallica.bnf.fr/ark:/12148/bpt6k5459562z">Cliquer ici pour la seconde oeuvre</a>`;
+        } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k5459562z')) {
+            return `Blablablablabla <a href="http://gallica.bnf.fr/ark:/12148/bpt6k70159b">Troisieme oeuvre</a>`
+        } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k70159b')) {
+            return 'C\'est bon, fini !';
+        } else {
+            return '';
         }
     }
 }
