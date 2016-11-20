@@ -45,7 +45,7 @@ def init_quest(quest_id):
     keys = quests.keys()
     
     if not quest_id in keys:
-        response = "Cet id n'existe pas. Merci d'entrer l'un des ids suivants : "
+        response = "Quest '" + str(quest_id) + "' does not exist. Thank to use one of those : "
         response += ", ".join(str(x) for x in keys) + "."
         return create_response(app, response)
         
