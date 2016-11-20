@@ -13,11 +13,6 @@ quests = {
     3: "Quest 3"
 }
 
-if 'MONGODB_URI' in environ:
-    mongo = MongoClient(environ['MONGODB_URI'])
-else:
-    mongo = MongoClient('mongodb://localhost:27017/test')
-
 db = create_mongo_client()
 
 @app.route('/work')
@@ -66,11 +61,17 @@ def start_quest(quest_id=None, user_id=None):
         "finished": False
     }
     
-    response = db.quests.insert_one(item).inserted_id
+    response = db.quests.insert(item)
     return create_response(app, response)
 
 # /quest/finish?quest_id=&user_id=
-
-
+@app.route('/quest/finish/<int:quest_id>/<int:user_id>/')
+def finish_quest(quest_id, user_id):
+    response = db.quests.update(
+        {'user_id': user_id, 'quest_id': quest_id},
+        {'$set': {'finished': True}})
+    return create_response(app, response)
+    
+    
 if __name__ == '__main__':
     app.run()
