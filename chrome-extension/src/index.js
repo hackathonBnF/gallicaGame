@@ -3,6 +3,13 @@ import _ from 'lodash';
 import UrlBasedQuest from './urlBasedQuest';
 
 
+const urlBasedQuest = new UrlBasedQuest(() => console.log('Quest has ended'));
+if (!urlBasedQuest.isInitialized()) {
+    urlBasedQuest.initialize();
+}
+urlBasedQuest.onPageVisit();
+console.log(urlBasedQuest.getCurrentQuestHtml());
+
 const assetsPath = chrome.extension.getURL('assets/images');
 
 console.log(assetsPath);
@@ -33,7 +40,7 @@ quests.innerHTML = `
     <div class="gg-quests-content">
         <dl>
             <dt>La recherche du diamant jaune</dt>
-            <dd>On sait depuis longtemps que travailler avec du texte lisible etcontenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. </dd>
+            <dd>${urlBasedQuest.getCurrentQuestHtml()}</dd>
         </dl>
         <dl>
             <dt>Il était une foi dans l’Ouest</dt>
@@ -51,13 +58,6 @@ document.body.insertBefore(quests,toolbar);
 fetch('http://gallicagame.herokuapp.com/quests').then(response => response.json()).then((jsonBody) => {
     console.log(jsonBody);
 });
-
-const urlBasedQuest = new UrlBasedQuest(() => console.log('Quest has ended'));
-if (!urlBasedQuest.isInitialized()) {
-    urlBasedQuest.initialize();
-}
-urlBasedQuest.onPageVisit();
-console.log(urlBasedQuest.getCurrentQuestHtml());
 // remember visited pages -> as all pages on one quest are visited, validate the quest.
 
 document.querySelector('.js-open-gg-quests').addEventListener('click',(event)=>{
