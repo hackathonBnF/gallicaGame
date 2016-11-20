@@ -8,8 +8,10 @@ def create_mongo_client():
         mongo = MongoClient(environ['MONGODB_URI'])
     else:
         mongo = MongoClient('mongodb://localhost:27017/test')
-
-    return mongo.get_default_database()
+    
+    db = mongo.get_default_database()
+    db.drop_collection('quests')
+    return db
 
 def create_response(app, content):
     return app.response_class(dumps(content), content_type='application/json')
