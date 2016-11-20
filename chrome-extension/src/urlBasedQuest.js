@@ -24,9 +24,10 @@ export default class {
 
     initialize() {
         this.targetUrls = {
-            'http://gallica.bnf.fr/ark:/12148/bpt6k5551207g': false,
-            'http://gallica.bnf.fr/ark:/12148/bpt6k5459562z': false,
-            'http://gallica.bnf.fr/ark:/12148/bpt6k70159b': false,
+            'http://gallica.bnf.fr/ark:/12148/bpt6k716226w': false,
+            'http://gallica.bnf.fr/ark:/12148/btv1b90150286': false,
+            'http://gallica.bnf.fr/ark:/12148/bpt6k54932781/f136.image': false,
+            'http://gallica.bnf.fr/ark:/12148/bpt6k716226w/f5.image': false,
         };
         fetch('http://gallicagame.herokuapp.com/quests').then(r => r.json()).then(jsonBody => {
             this.userId = jsonBody.user_id;
@@ -56,12 +57,14 @@ export default class {
 
     getCurrentQuestHtml() {
         const currentUrl = window.location.href;
-        if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k5551207g')) {
-            return `Première étape. <a href="http://gallica.bnf.fr/ark:/12148/bpt6k5459562z">Cliquer ici pour la seconde oeuvre</a>`;
-        } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k5459562z')) {
-            return `Deuxième étape. <a href="http://gallica.bnf.fr/ark:/12148/bpt6k70159b">Cliquer ici pour la troisième oeuvre</a>`;
-        } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k70159b')) {
-            return 'C\'est bon, fini !';
+        if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k716226w/f5.image')) {
+            return 'Quelle avancée majeure en médecine légale ce tragique événement a-t-il amené ?'
+        } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/btv1b90150286')) {
+            return `<a href="http://gallica.bnf.fr/ark:/12148/bpt6k54932781/f136.image">Pourquoi a-t-on accusé cette tenue d’avoir précipité la mort d’une majorité de femmes dans le bazar ?</a>`;
+        } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k54932781/f136.image')) {
+            return '<a href="http://gallica.bnf.fr/ark:/12148/bpt6k716226w/f5.image">Pourquoi cet événement a-t-il failli porter un coup fatal au 7e art ? N’hésitez pas à chercher d’autres articles de presse</a>';
+        } else if (currentUrl.startsWith('http://gallica.bnf.fr/ark:/12148/bpt6k716226w')) {
+            return `<a href="http://gallica.bnf.fr/ark:/12148/btv1b90150286">Cherchez dans Gallica l’emplacement du bazar de la Charité dans Paris en 1897 ?</a>`;
         } else {
             return 'On sait depuis longtemps que travailler avec du texte lisible etcontenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même.';
         }

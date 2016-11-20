@@ -39,7 +39,7 @@ quests.innerHTML = `
     <div class="gg-quests-label">Quête ÉvÉnementielle</div>
     <div class="gg-quests-content">
         <dl>
-            <dt>La recherche du diamant jaune</dt>
+            <dt>L'incendie du bazar de la Charité</dt>
             <dd>${urlBasedQuest.getCurrentQuestHtml()}</dd>
         </dl>
         <dl>
