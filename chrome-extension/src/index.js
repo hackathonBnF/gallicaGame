@@ -23,10 +23,10 @@ toolbarGrp.innerHTML = `
         <a href="#">
             <img src="${assetsPath}/bodies.png">
         </a>
-        <a class="js-open-gg-quests selected" href="#">
+        <a href="#">
             <img src="${assetsPath}/fiole.png">
         </a> 
-        <a href="#">
+        <a class="js-open-gg-quests selected" href="#">
             <img src="${assetsPath}/star.png">
         </a> 
     </nav>
