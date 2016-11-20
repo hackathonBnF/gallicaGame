@@ -106,7 +106,7 @@ def finish_quest(quest_id, user_id):
     response = db.quests.update(
         {'user_id': user_id, 'quest_id': quest_id},
         {'$set': {'finished': True}})
-    found = list(response)
+    found = list(db.quests.find({"user_id": user_id, "quest_id": quest_id}))
     return create_response(app, {"action": "update", "value": found})
     
     
