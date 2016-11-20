@@ -1,0 +1,21 @@
+> db.quest.insert({user_id: 1, quest_id: 3, started: true})
+WriteResult({ "nInserted" : 1 })
+> db.quest.find({})
+{ "_id" : ObjectId("5830c922b948b0670baae38a"), "user_id" : 1, "quest_id" : 3, "started" : true }
+> db.quest.update({user_id: 1, quest_id: 3}, {'$set': {finished: true}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.quest.find({})
+{ "_id" : ObjectId("5830c922b948b0670baae38a"), "user_id" : 1, "quest_id" : 3, "started" : true, "finished" : true }
+> db.quest.insert({user_id: 1, quest_id: 5, started: true})
+WriteResult({ "nInserted" : 1 })
+> db.quest.find({finished: false})
+> db.quest.insert({user_id: 2, quest_id: 4, started: true, finished: false})
+WriteResult({ "nInserted" : 1 })
+> db.quest.find({})
+{ "_id" : ObjectId("5830c922b948b0670baae38a"), "user_id" : 1, "quest_id" : 3, "started" : true, "finished" : true }
+{ "_id" : ObjectId("5830c991b948b0670baae38b"), "user_id" : 1, "quest_id" : 5, "started" : true }
+{ "_id" : ObjectId("5830c9c2b948b0670baae38c"), "user_id" : 2, "quest_id" : 4, "started" : true, "finished" : false }
+> db.quest.find({finished: false})
+{ "_id" : ObjectId("5830c9c2b948b0670baae38c"), "user_id" : 2, "quest_id" : 4, "started" : true, "finished" : false }
+> db.quest.insert({foo: 'bar'})
+WriteResult({ "nInserted" : 1 })

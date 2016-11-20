@@ -26,17 +26,9 @@
   ],
   "license": "Apache License Version 2.0",
   "browser": {
-    "angular": "./node_modules/angular/angular.min.js",
-    "angular-ui-router": "./node_modules/angular-ui-router/release/angular-ui-router.min.js",
-    "angular-translate": "./node_modules/angular-translate/dist/angular-translate.min.js",
-    "angular-translate-loader-url": "./node_modules/angular-translate/dist/angular-translate-loader-url/angular-translate-loader-url.min.js",
-    "angular-translate-loader-static-files": "./node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"
-   
   },
   "browserify-shim": {
-    "angular": {
-      "exports": "angular"
-    }
+
   },
   "browserify": {
     "transform": [
@@ -53,9 +45,7 @@
     ]
   },
   "dependencies": {
-    "angular": "^1.5.2",
-    "angular-translate": "^2.11.0",
-    "angular-ui-router": "^0.2.18",
+    "handlebars": "^4.0.6",
     "lodash": "^4.13.1",
     "normalize-scss": "^5.0.3"
   },

@@ -1,19 +1,24 @@
-.ui-layout-fullwidth .detailPane{
-    padding-left: 0;
-    margin-left: -50px;
-}
 
-.detailPane div.pager{
-    right: 150px;
-}
-
-.gc-root{
+.gc-tool{
     position: absolute;
-    top: 110px;
-    right: 10px;
-    bottom: 47px;
-    width: 140px;
-    background-color: red;
-    padding: 10px;
+    left: 10px;
+    bottom: 40px;
     z-index: 9999;
+}
+
+.gc-quests{
+    position: absolute;
+    left: 60px;
+    bottom: 40px;
+    z-index: 99999;
+    background-color: #DCDCDC;
+    padding: 10px;
+}
+
+.persoToolbar a.gc-icon{
+    font-size: 1rem;
+}
+
+.gc-hide{
+    display: none;
 }
