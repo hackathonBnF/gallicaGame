@@ -51,7 +51,7 @@ def init_quest(quest_id):
             {
                 "Error": response,
                 "ErrorCode": 0
-            })
+            }, 403)
         
     user_id_generator += 1
     return redirect(url_for('start_quest', quest_id=quest_id, user_id = user_id_generator))
@@ -88,7 +88,7 @@ def finish_quest(quest_id, user_id):
             {
                 "Error": "user_id '" + str(user_id) + "' does not exist.",
                 "ErrorCode": 1
-            })
+            }, 403)
     
     item = {
         "user_id": user_id,
@@ -105,7 +105,7 @@ def finish_quest(quest_id, user_id):
             {
                 "Error": message,
                 "ErrorCode": 2
-            })
+            }, 403)
     
     response = db.quests.update(
         {'user_id': user_id, 'quest_id': quest_id},

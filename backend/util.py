@@ -13,8 +13,8 @@ def create_mongo_client():
     db.drop_collection('quests')
     return db
 
-def create_response(app, content):
-    return app.response_class(dumps(content), content_type='application/json')
+def create_response(app, content, status=200):
+    return app.response_class(dumps(content), content_type='application/json'), status
 
 def to_json(xml_string):
     return xmltodict.parse(xml_string)
