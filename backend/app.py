@@ -60,9 +60,12 @@ def start_quest(quest_id=None, user_id=None):
         "started": True,
         "finished": False
     }
-    
-    response = db.quests.insert(item)
-    return create_response(app, response)
+    found = db.quests.find(item)
+    if found != []:
+        return create_response(app, found)
+        
+    db.quests.insert(item)
+    return create_response(app, item)
 
 # /quest/finish?quest_id=&user_id=
 @app.route('/quest/finish/<int:quest_id>/<int:user_id>/')
