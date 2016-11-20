@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 
 console.log(location.pathname);
 const toolbar = document.querySelector('#leftToolbar');
@@ -16,10 +17,20 @@ document.body.insertBefore(toolbarGrp,toolbar);
 const quests = document.createElement("div");
 quests.setAttribute('class','gc-quests gc-hide');
 quests.innerHTML = `
-    Pouet
+    <ul>
+        <li>Quest 1</li>
+        <li>Quest 2</li>
+        <li>Quest 3</li>
+    </ul>
 `;
 document.body.insertBefore(quests,toolbar);
 //js-gc-quests
+
+fetch('http://gallicagame.herokuapp.com/quests').then(response => response.json()).then((jsonBody) => {
+    console.log(jsonBody);
+});
+
+// remember visited pages -> as all pages on one quest are visited, validate the quest.
 
 document.querySelector('.js-open-gc-quests').addEventListener('click',(event)=>{
     console.log("pouet");

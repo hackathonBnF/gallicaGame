@@ -25,11 +25,8 @@
     }
   ],
   "license": "Apache License Version 2.0",
-  "browser": {
-  },
-  "browserify-shim": {
-
-  },
+  "browser": {},
+  "browserify-shim": {},
   "browserify": {
     "transform": [
       "browserify-shim",
@@ -47,7 +44,8 @@
   "dependencies": {
     "handlebars": "^4.0.6",
     "lodash": "^4.13.1",
-    "normalize-scss": "^5.0.3"
+    "normalize-scss": "^5.0.3",
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "babel-polyfill": "^6.9.1",
