@@ -53,27 +53,53 @@ def init_quest(quest_id):
     return redirect(url_for('start_quest', quest_id=quest_id, user_id = user_id_generator))
     
 @app.route('/quest/start/<int:quest_id>/<int:user_id>/')
-def start_quest(quest_id=None, user_id=None):
+def start_quest(quest_id, user_id):
+    global user_id_generator
+    if user_id > user_id_generator+1:
+        user_id_generator +=1
+        return redirect(url_for('start_quest', quest_id=quest_id, user_id= user_id_generator))
+    
+    if user_id > user_id_generator:
+        user_id_generator+=1
+    
     item = {
         "user_id": user_id,
         "quest_id": quest_id,
         "started": True,
         "finished": False
     }
-    found = db.quests.find(item)
+    found = list(db.quests.find(item))
     if found != []:
-        return create_response(app, found)
+        return create_response(app, {"action": "find", "value": found})
         
     db.quests.insert(item)
-    return create_response(app, item)
+    return create_response(app, {"action": "add", "value": [item]})
 
 # /quest/finish?quest_id=&user_id=
 @app.route('/quest/finish/<int:quest_id>/<int:user_id>/')
 def finish_quest(quest_id, user_id):
+    # bad user
+    if user_id > user_id_generator:
+        return create_response(app, {"Error": "user_id '" + str(user_id) + "' does not exist."})
+    
+    item = {
+        "user_id": user_id,
+        "quest_id": quest_id,
+        "started": True,
+        "finished": False
+    }
+    
+    found = list(db.quests.find(item))
+    # try to finish a non-started quest
+    if found == []:
+        message = "user_id '" + str(user_id) + "' does not start quest '" + quests[quest_id] + "'"
+        return create_response(app, {"Error": message})
+    
     response = db.quests.update(
         {'user_id': user_id, 'quest_id': quest_id},
         {'$set': {'finished': True}})
-    return create_response(app, response)
+    found = list(response)
+    return create_response(app, {"action": "update", "value": found})
     
     
 if __name__ == '__main__':
