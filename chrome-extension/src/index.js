@@ -18,7 +18,7 @@ console.log(toolbar);
 const toolbarGrp = document.createElement("div");
 toolbarGrp.setAttribute('class','gg-tool');
 toolbarGrp.innerHTML = `
-    <div class="gg-tool-title">Gallica Game</div>
+    <div class="gg-tool-title">Gallica Scope</div>
     <nav>
         <a href="#">
             <img src="${assetsPath}/bodies.png">
