@@ -11,6 +11,7 @@ console.log(toolbar);
 const toolbarGrp = document.createElement("div");
 toolbarGrp.setAttribute('class','gg-tool');
 toolbarGrp.innerHTML = `
+    <div class="gg-tool-title">Gallica Game</div>
     <nav>
         <a href="#">
             <img src="${assetsPath}/bodies.png">
@@ -28,8 +29,8 @@ document.body.insertBefore(toolbarGrp,toolbar);
 const quests = document.createElement("div");
 quests.setAttribute('class','gg-quests gg-hide');
 quests.innerHTML = `
-    <div class="label">Quête ÉvÉnementielle</div>
-    <div>
+    <div class="gg-quests-label">Quête ÉvÉnementielle</div>
+    <div class="gg-quests-content">
         <dl>
             <dt>La recherche du diamant jaune</dt>
             <dd>On sait depuis longtemps que travailler avec du texte lisible etcontenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. </dd>

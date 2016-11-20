@@ -11,6 +11,8 @@ $ionicons-font-path: 'http://code.ionicframework.com/ionicons/2.0.1/fonts';
     right: 10px;
     top: 120px;
     z-index: 9999;
+    display: flex;
+    flex-direction: row;
     nav{
         display: flex;
         flex-direction: row;
@@ -28,6 +30,17 @@ $ionicons-font-path: 'http://code.ionicframework.com/ionicons/2.0.1/fonts';
     }
 }
 
+.gg-tool-title{
+    background-color: #ffffff;
+    padding: 5px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    margin: 8px 20px 8px 0;
+}
+
 .gg-quests{
     position: absolute;
     right: 10px;
@@ -35,7 +48,34 @@ $ionicons-font-path: 'http://code.ionicframework.com/ionicons/2.0.1/fonts';
     z-index: 99999;
     background-color: #ffffff;
     padding: 15px;
-
+    .gg-quests-label{
+        color: #d33016;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    .gg-quests-content{
+        max-width: 340px;
+        max-height: 260px;
+        overflow: auto;
+        dl{
+            position: relative;
+            padding-bottom: 20px;
+        }
+        dt{
+            margin-bottom: 5px;
+        }
+        dl:after{
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            border-bottom: 1px solid #323232;
+            width: 60%;
+        }
+    }
 }
 
 .persoToolbar a.gg-icon{
